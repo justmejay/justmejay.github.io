@@ -1,0 +1,159 @@
+:root {
+    --primary-color: #ff4d6d;
+    --secondary-color: #ff8fa3;
+    --bg-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --text-color: #590d22;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg-gradient);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    perspective: 1000px;
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 24px;
+    border: 1px solid var(--glass-border);
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: var(--text-color);
+    margin-bottom: 40px;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    min-height: 60px; /* Space for buttons */
+}
+
+.btn {
+    padding: 12px 32px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Outfit', sans-serif;
+}
+
+.yes-btn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.yes-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 77, 109, 0.4);
+    background-color: #ff3355;
+}
+
+.no-btn {
+    background-color: white;
+    color: var(--primary-color);
+    position: absolute; /* Allows for easy movement */
+    /* Initial position relative to the buttons container */
+    left: 60%; 
+    transform: translateX(-50%);
+}
+/* Center the Yes button initially too so they look balanced */
+.yes-btn {
+    z-index: 2;
+    /* Move yes button slightly left to balance the absolute no button */
+   /* margin-right: 120px;  */
+}
+.buttons {
+    /* Resetting display to allow absolute positioning of No button within this relative container */
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.no-btn {
+    position: relative; /* Start relative */
+    left: auto;
+    transform: none;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 480px) {
+    .title {
+        font-size: 2.5rem;
+    }
+    .btn {
+        padding: 10px 24px;
+        font-size: 1rem;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+#successMessage h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+#successMessage p {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin: 5px 0;
+}
+
+/* Pulse animation for Yes button */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.yes-btn {
+    animation: pulse 2s infinite ease-in-out;
+}
+.yes-btn:hover {
+    animation: none; /* Stop pulsing on hover so scale transform takes over smoothly */
+    transform: scale(1.1);
+}
